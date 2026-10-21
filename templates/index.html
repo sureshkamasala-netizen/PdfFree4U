@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f4">
+  <meta name="description" content="A clean, private workspace for everyday PDF tasks.">
+  <title>PDF Free 4U | PDF tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <a class="brand" href="/" aria-label="PDF Free 4U home">
+            <span class="brand-mark" aria-hidden="true"><span>♥</span></span>
+            <span class="brand-name"><span class="brand-main">PDF</span><span class="brand-accent">Free 4U</span></span>
+          </a>
+         
+        </div>
+        <div class="topbar-right"><span class="server-status"><span></span> All systems normal</span><button class="avatar" type="button" aria-label="PDF Free 4U">4U</button></div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR EVERYDAY PDF WORKSPACE</div>
+            <h1>Documents, <span>in good order.</span></h1>
+            <p class="welcome-copy">The small jobs that make PDFs work better. All in one quiet place.</p>
+          </div>
+          <div class="page-stamp" aria-hidden="true"><span>PDF</span><i>↗</i></div>
+        </section>
+
+        <section class="tool-section" id="tools" aria-labelledby="tool-heading">
+          <div class="section-head">
+            <div><h2 id="tool-heading">Pick a tool</h2><p>Simple tools for the documents on your desk.</p></div>
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="tool-search" type="search" placeholder="Find a tool" aria-label="Find a tool"><kbd>/</kbd></label>
+          </div>
+
+          <div class="tool-grid" id="tool-grid">
+            <button class="tool-card" type="button" data-tool="merge" data-category="organize" data-search="merge combine join organize">
+              <span class="tool-icon icon-coral" aria-hidden="true">＋</span><span class="tool-copy"><strong>Merge PDF</strong><small>Bring documents together</small></span><span class="tool-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="tool-card" type="button" data-tool="split" data-category="organize" data-search="split divide extract pages organize">
+              <span class="tool-icon icon-yellow" aria-hidden="true">⌁</span><span class="tool-copy"><strong>Split PDF</strong><small>Separate pages into files</small></span><span class="tool-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="tool-card" type="button" data-tool="rotate" data-category="organize" data-search="rotate turn orientation organize">
+              <span class="tool-icon icon-blue" aria-hidden="true">↻</span><span class="tool-copy"><strong>Rotate PDF</strong><small>Set pages the right way up</small></span><span class="tool-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="tool-card" type="button" data-tool="compress" data-category="optimize" data-search="compress reduce optimize size">
+              <span class="tool-icon icon-green" aria-hidden="true">↓</span><span class="tool-copy"><strong>Compress PDF</strong><small>Trim the file size</small></span><span class="tool-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="tool-card" type="button" data-tool="images-to-pdf" data-category="convert" data-search="image jpg jpeg png convert pdf">
+              <span class="tool-icon icon-lilac" aria-hidden="true">▧</span><span class="tool-copy"><strong>Image to PDF</strong><small>Turn JPGs or PNGs into a PDF</small></span><span class="tool-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <p class="no-results" id="no-results" hidden>No tools found. Try a different search.</p>
+        </section>
+
+        <section class="recent-section" id="recent" aria-labelledby="recent-heading">
+          <div class="section-head recent-head"><div><h2 id="recent-heading">Recent files</h2><p>Your latest work, ready when you are.</p></div><span class="history-note">Only visible in this browser</span></div>
+          <div class="history-table-wrap">
+            <table class="history-table">
+              <thead><tr><th>FILE</th><th>TOOL</th><th>SIZE</th><th>WHEN</th><th><span class="sr-only">Actions</span></th></tr></thead>
+              <tbody id="history-body"><tr><td class="empty-history" colspan="5"><span class="empty-mark">◷</span><strong>Nothing here yet</strong><span>Your finished files will show up here.</span></td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="page-footer"><span>PDF Free 4U</span><span>Made for getting things done.</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="tool-dialog" id="tool-dialog" aria-labelledby="dialog-title">
+    <form class="dialog-form" id="job-form">
+      <div class="dialog-top"><span class="dialog-kicker" id="dialog-kicker">PDF TOOL</span><button class="close-dialog" type="button" id="close-dialog" aria-label="Close">×</button></div>
+      <h2 id="dialog-title">Merge PDF</h2>
+      <p class="dialog-description" id="dialog-description">Put your PDFs in the order you want them combined.</p>
+      <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Choose or drop files">
+        <input id="file-input" name="files" type="file" hidden>
+        <span class="drop-icon" aria-hidden="true">↑</span>
+        <strong>Drop files here</strong><span>or <span class="browse-link">browse your device</span></span>
+        <small id="accepted-types">PDF files · up to 100 MB</small>
+      </div>
+      <div class="file-list" id="file-list" aria-live="polite"></div>
+      <div class="option-row" id="split-options" hidden><label for="page-ranges">Page ranges <span>Optional</span></label><input id="page-ranges" type="text" name="ranges" placeholder="e.g. 1-3, 5, 8-9"><small>Leave blank to save each page as a separate PDF.</small></div>
+      <div class="option-row" id="rotate-options" hidden><label for="rotation">Rotation</label><select id="rotation" name="degrees"><option value="90">90° clockwise</option><option value="180">180°</option><option value="270">90° counter-clockwise</option></select></div>
+      <div class="job-error" id="job-error" role="alert" hidden></div>
+      <div class="job-success" id="job-success" hidden></div>
+      <div class="dialog-actions"><button class="cancel-button" type="button" id="cancel-dialog">Cancel</button><button class="process-button" id="process-button" type="submit"><span id="process-label">Merge PDF</span><span aria-hidden="true">↗</span></button></div>
+    </form>
+  </dialog>
+</body>
+</html>

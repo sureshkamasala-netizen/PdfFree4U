@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: pdf-free-4u
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /healthz
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /tmp/jobs.sqlite3
+      - key: OUTPUT_DIR
+        value: /tmp/outputs
