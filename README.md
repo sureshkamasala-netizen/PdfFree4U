@@ -48,6 +48,10 @@ The included `render.yaml` defines a Docker web service on Render's Free plan an
 
 No persistent disk is attached. The app still uses temporary filesystem space while it is running, but the SQLite history and generated downloads are lost when the free service spins down, restarts, or redeploys. Render's free web services can also sleep after 15 minutes without traffic and may take about a minute to wake. This configuration is best for a demo with small PDFs, not important or long-term files.
 
+## Google Search indexing
+
+The site exposes `/robots.txt` and `/sitemap.xml`, and its homepage includes a canonical URL and search/social metadata. After deploying these changes, add `https://pdffree4u.com/` as a Domain property in [Google Search Console](https://search.google.com/search-console/), verify ownership with the DNS TXT record Google provides, then submit `https://pdffree4u.com/sitemap.xml`. Use URL Inspection to request indexing of the homepage. Google controls whether and when a page is indexed or its position in search results; submission does not guarantee ranking.
+
 ## Deployment notes
 
 The app is designed for one service instance with persistent local storage. Do not scale it horizontally without moving SQLite to a shared database and generated files to shared object storage. PDF processing runs synchronously in web workers; deployments handling untrusted or high-volume traffic should add resource limits and a background job queue. The default development secret is only for local use; always configure `SECRET_KEY` for a deployment.

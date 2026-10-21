@@ -2,6 +2,7 @@ import io
 import sys
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 import zipfile
 from pathlib import Path
 
@@ -95,6 +96,20 @@ class PdfStudioTests(unittest.TestCase):
 
     def test_health_endpoint(self):
         self.assertEqual(self.client.get("/healthz").json, {"status": "ok"})
+
+    def test_search_engine_routes(self):
+        robots = self.client.get("/robots.txt")
+        self.assertEqual(robots.status_code, 200)
+        self.assertIn("Sitemap: https://pdffree4u.com/sitemap.xml", robots.get_data(as_text=True))
+        self.assertIn("Disallow: /api/", robots.get_data(as_text=True))
+
+        sitemap = self.client.get("/sitemap.xml")
+        self.assertEqual(sitemap.status_code, 200)
+        root = ET.fromstring(sitemap.data)
+        namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+        location = root.find("sm:url/sm:loc", namespace)
+        self.assertIsNotNone(location)
+        self.assertEqual(location.text, "https://pdffree4u.com/")
 
 
 if __name__ == "__main__":

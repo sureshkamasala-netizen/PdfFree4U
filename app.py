@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import fitz
-from flask import Flask, abort, jsonify, render_template, request, send_file, session
+from flask import Flask, Response, abort, jsonify, render_template, request, send_file, session
 from PIL import Image
 from pypdf import PdfReader, PdfWriter
 from werkzeug.exceptions import RequestEntityTooLarge
@@ -208,6 +208,30 @@ def purge_expired_outputs():
 def index():
     current_owner_id()
     return render_template("index.html")
+
+
+@app.get("/robots.txt")
+def robots_txt():
+    content = """User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /healthz
+
+Sitemap: https://pdffree4u.com/sitemap.xml
+"""
+    return Response(content, mimetype="text/plain")
+
+
+@app.get("/sitemap.xml")
+def sitemap_xml():
+    content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://pdffree4u.com/</loc>
+  </url>
+</urlset>
+"""
+    return Response(content, mimetype="application/xml")
 
 
 @app.get("/api/history")
