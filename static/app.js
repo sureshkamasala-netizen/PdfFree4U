@@ -16,8 +16,14 @@ const processLabel = document.querySelector("#process-label");
 const jobError = document.querySelector("#job-error");
 const jobSuccess = document.querySelector("#job-success");
 const historyBody = document.querySelector("#history-body");
+const heroDropZone = document.querySelector("#hero-drop-zone");
+const heroFileInput = document.querySelector("#hero-file-input");
+const heroError = document.querySelector("#hero-error");
+const toolPicker = document.querySelector("#tool-picker-dialog");
+const quickToolList = document.querySelector("#quick-tool-list");
 let activeTool = "merge";
 let queuedFiles = [];
+let heroFiles = [];
 
 function formatBytes(bytes) {
   if (bytes < 1024) return `${bytes} B`;
@@ -25,9 +31,9 @@ function formatBytes(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function openTool(tool) {
+function openTool(tool, initialFiles = []) {
   activeTool = tool;
-  queuedFiles = [];
+  queuedFiles = [...initialFiles];
   const details = toolDetails[tool];
   document.querySelector("#dialog-kicker").textContent = `${tool === "images-to-pdf" ? "CONVERT" : tool.toUpperCase()} TOOL`;
   document.querySelector("#dialog-title").textContent = details.title;
@@ -42,8 +48,61 @@ function openTool(tool) {
   document.querySelector("#rotation").value = "90";
   jobError.hidden = true;
   jobSuccess.hidden = true;
-  fileList.replaceChildren();
+  renderFileList();
   dialog.showModal();
+}
+
+function showToolPicker(files) {
+  heroError.hidden = true;
+  const selectedFiles = [...files];
+  const pdfFiles = selectedFiles.filter((file) => file.name.toLowerCase().endsWith(".pdf"));
+  const imageFiles = selectedFiles.filter((file) => /\.(jpe?g|png)$/i.test(file.name));
+  if (!selectedFiles.length || (pdfFiles.length && imageFiles.length) || pdfFiles.length + imageFiles.length !== selectedFiles.length) {
+    heroError.textContent = "Choose PDF files or JPG/PNG images, one file type at a time.";
+    heroError.hidden = false;
+    return;
+  }
+
+  heroFiles = selectedFiles;
+  const availableTools = imageFiles.length
+    ? ["images-to-pdf"]
+    : pdfFiles.length > 1
+      ? ["merge"]
+      : ["compress", "split", "rotate"];
+  document.querySelector("#picker-title").textContent = "What would you like to do?";
+  document.querySelector("#picker-description").textContent = `${selectedFiles.length} ${imageFiles.length ? "image" : "PDF"}${selectedFiles.length === 1 ? "" : "s"} selected.`;
+  quickToolList.replaceChildren();
+
+  const icons = { merge: "▢", compress: "⤢", split: "◫", rotate: "↻", "images-to-pdf": "▧" };
+  for (const tool of availableTools) {
+    const button = document.createElement("button");
+    button.className = "quick-tool-button";
+    button.type = "button";
+    button.dataset.tool = tool;
+    const icon = document.createElement("span");
+    icon.className = `tool-icon quick-icon-${tool}`;
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = icons[tool];
+    const copy = document.createElement("span");
+    copy.className = "tool-copy";
+    const title = document.createElement("strong");
+    title.textContent = toolDetails[tool].title;
+    const description = document.createElement("small");
+    description.textContent = toolDetails[tool].description;
+    copy.append(title, description);
+    const arrow = document.createElement("span");
+    arrow.className = "tool-arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "→";
+    button.append(icon, copy, arrow);
+    button.addEventListener("click", () => {
+      toolPicker.close();
+      openTool(tool, heroFiles);
+      heroFiles = [];
+    });
+    quickToolList.append(button);
+  }
+  toolPicker.showModal();
 }
 
 function addFiles(files) {
@@ -107,8 +166,12 @@ document.querySelectorAll(".tool-card").forEach((card) => {
 });
 document.querySelector("#close-dialog").addEventListener("click", () => dialog.close());
 document.querySelector("#cancel-dialog").addEventListener("click", () => dialog.close());
+document.querySelector("#close-picker").addEventListener("click", () => toolPicker.close());
 dialog.addEventListener("click", (event) => {
   if (event.target === dialog) dialog.close();
+});
+toolPicker.addEventListener("click", (event) => {
+  if (event.target === toolPicker) toolPicker.close();
 });
 dropZone.addEventListener("click", () => fileInput.click());
 dropZone.addEventListener("keydown", (event) => {
@@ -134,6 +197,41 @@ for (const eventName of ["dragleave", "drop"]) {
   });
 }
 dropZone.addEventListener("drop", (event) => addFiles(event.dataTransfer.files));
+
+heroDropZone.addEventListener("click", (event) => {
+  if (event.target !== heroBrowse) heroFileInput.click();
+});
+heroDropZone.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    heroFileInput.click();
+  }
+});
+const heroBrowse = document.querySelector("#hero-browse");
+heroBrowse.addEventListener("click", (event) => {
+  event.stopPropagation();
+  heroFileInput.click();
+});
+heroFileInput.addEventListener("change", () => {
+  showToolPicker(heroFileInput.files);
+  heroFileInput.value = "";
+});
+for (const eventName of ["dragenter", "dragover"]) {
+  heroDropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    heroDropZone.classList.add("is-dragging");
+  });
+}
+for (const eventName of ["dragleave", "drop"]) {
+  heroDropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    heroDropZone.classList.remove("is-dragging");
+  });
+}
+heroDropZone.addEventListener("drop", (event) => {
+  event.preventDefault();
+  showToolPicker(event.dataTransfer.files);
+});
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -228,41 +326,22 @@ async function loadHistory() {
 }
 
 function applyFilters(category = document.querySelector(".filter-chip.is-selected")?.dataset.filter || "all") {
-  const query = document.querySelector("#tool-search").value.trim().toLowerCase();
   let visibleCount = 0;
   for (const card of document.querySelectorAll(".tool-card")) {
     const matchesCategory = category === "all" || card.dataset.category === category;
-    const matchesQuery = !query || card.dataset.search.includes(query) || card.textContent.toLowerCase().includes(query);
-    card.hidden = !(matchesCategory && matchesQuery);
+    card.hidden = !matchesCategory;
     if (!card.hidden) visibleCount += 1;
   }
   document.querySelector("#no-results").hidden = visibleCount > 0;
   document.querySelectorAll(".filter-chip").forEach((chip) => chip.classList.toggle("is-selected", chip.dataset.filter === category));
-  const label = { all: "All tools", organize: "Organize PDF", optimize: "Optimize PDF", convert: "Convert PDF" }[category];
-  document.querySelector("#current-section").textContent = label;
-  document.querySelectorAll(".side-nav .nav-link[data-filter]").forEach((link) => link.classList.toggle("is-active", link.dataset.filter === category));
+  document.querySelectorAll(".main-nav .nav-item[data-filter]").forEach((link) => link.classList.toggle("is-active", link.dataset.filter === category));
 }
 
 document.querySelectorAll(".filter-chip").forEach((chip) => chip.addEventListener("click", () => applyFilters(chip.dataset.filter)));
-document.querySelectorAll(".side-nav .nav-link[data-filter]").forEach((link) => link.addEventListener("click", () => applyFilters(link.dataset.filter)));
-document.querySelector("#tool-search").addEventListener("input", () => applyFilters());
+document.querySelectorAll(".main-nav .nav-item[data-filter]").forEach((link) => link.addEventListener("click", () => applyFilters(link.dataset.filter)));
 document.addEventListener("keydown", (event) => {
-  if (event.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
-    event.preventDefault();
-    document.querySelector("#tool-search").focus();
-  }
   if (event.key === "Escape" && dialog.open) dialog.close();
-});
-
-const searchBox = document.querySelector(".search-box");
-searchBox.addEventListener("click", () => {
-  if (window.matchMedia("(max-width: 700px)").matches) {
-    searchBox.classList.add("is-open");
-    document.querySelector("#tool-search").focus();
-  }
-});
-document.addEventListener("click", (event) => {
-  if (!searchBox.contains(event.target) && !document.querySelector("#tool-search").value) searchBox.classList.remove("is-open");
+  if (event.key === "Escape" && toolPicker.open) toolPicker.close();
 });
 
 loadHistory();
