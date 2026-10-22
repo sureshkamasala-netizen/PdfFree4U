@@ -45,98 +45,239 @@
 </head>
 <body>
   <div class="app-shell">
-    <main class="main-content">
-      <header class="topbar">
-        <div class="topbar-left">
-          <a class="brand" href="/" aria-label="PDF Free 4U home">
-            <span class="brand-mark" aria-hidden="true"><span>♥</span></span>
-            <span class="brand-name"><span class="brand-main">PDF</span><span class="brand-accent">Free 4U</span></span>
-          </a>
-          <nav class="main-nav" aria-label="Main navigation">
-            <a class="nav-item is-active" href="#tools" data-filter="all">PDF Tools <span class="nav-chevron" aria-hidden="true"></span></a>
-            <a class="nav-item" href="#tools" data-filter="convert">Convert PDF <span class="nav-chevron" aria-hidden="true"></span></a>
-            <a class="nav-item" href="#tools" data-filter="organize">Organize PDF <span class="nav-chevron" aria-hidden="true"></span></a>
-            <a class="nav-item" href="#how-it-works">How it works</a>
-          </nav>
-        </div>
-        <a class="header-cta" href="#tools">All tools <span class="header-chevron" aria-hidden="true"></span></a>
-      </header>
+    <header class="topbar">
+      <div class="topbar-left">
+        <a class="brand" href="/" aria-label="PDF Free 4U home">
+          <span class="brand-mark" aria-hidden="true">PDF</span>
+          <span class="brand-name"><span class="brand-main">PDF</span><span class="brand-accent">Free4U</span></span>
+        </a>
 
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="nav-item is-active" href="#">Home</a>
+          <a class="nav-item" href="#tools">All Tools <span class="nav-chevron" aria-hidden="true"></span></a>
+          <a class="nav-item" href="#">Blog</a>
+          <a class="nav-item" href="#">About</a>
+          <a class="nav-item" href="#">Contact</a>
+        </nav>
+      </div>
+
+      <div class="topbar-right">
+        <button class="theme-toggle" type="button" aria-label="Toggle appearance">☾</button>
+        <label class="search-box" aria-label="Search tools">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input type="search" placeholder="Search tools..." aria-label="Search tools" />
+        </label>
+      </div>
+    </header>
+
+    <main class="main-content">
       <div class="page-wrap">
         <section class="hero" aria-labelledby="hero-title">
-          <div class="eyebrow">FREE ONLINE PDF TOOLS</div>
-          <h1 id="hero-title">Everything you need to<br class="desktop-break"> work with PDFs.</h1>
-          <p class="welcome-copy">Merge, split, compress and convert PDF files in seconds.<br class="desktop-break"> Simple tools, no hassle.</p>
-
-          <div class="hero-upload" id="hero-drop-zone" role="button" tabindex="0" aria-label="Choose or drop PDF and image files">
-            <input id="hero-file-input" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple hidden>
-            <span class="hero-upload-icon" aria-hidden="true">⇧</span>
-            <strong>Drop your files here</strong>
-            <span class="upload-subtitle">or choose files from your device</span>
-            <button class="primary-button" id="hero-browse" type="button">Choose files</button>
-            <small>PDF, JPG or PNG · Up to 100 MB total</small>
-            <p class="hero-error" id="hero-error" role="alert" hidden></p>
+          <div class="hero-copy">
+            <h1 id="hero-title">All Your <span>PDF</span> Needs<br>in One Place</h1>
+            <p>Simple, fast and free online tools to edit, convert, merge, split, compress and manage your PDF files.</p>
+            <ul class="hero-checks" aria-label="Key benefits">
+              <li><span class="check">✓</span>100% Free</li>
+              <li><span class="check">✓</span>No Registration</li>
+              <li><span class="check">✓</span>Works on Any Device</li>
+            </ul>
           </div>
 
-          <div class="trust-row" aria-label="Service benefits">
-            <div><span class="trust-icon trust-blue" aria-hidden="true">ϟ</span><span>Fast and easy</span></div>
-            <i aria-hidden="true"></i>
-            <div><span class="trust-icon trust-violet" aria-hidden="true">◇</span><span>Privacy-minded</span></div>
-            <i aria-hidden="true"></i>
-            <div><span class="trust-icon trust-green" aria-hidden="true">✓</span><span>No sign-up needed</span></div>
+          <div class="hero-visual" aria-label="PDF tools preview">
+            <div class="floating-stack" aria-hidden="true">
+              <span class="float-card blue">W</span>
+              <span class="float-card mint">A</span>
+              <span class="float-card red">PDF</span>
+              <span class="float-card yellow">⟡</span>
+              <span class="float-card purple">♢</span>
+              <span class="float-card orange">⇄</span>
+            </div>
+
+            <div class="hero-upload-card" id="hero-drop-zone" role="button" tabindex="0" aria-label="Choose or drop PDF and image files">
+              <input id="hero-file-input" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple hidden>
+              <div class="upload-cloud" aria-hidden="true">☁</div>
+              <h2>Drag &amp; Drop Your PDF File</h2>
+              <p>or</p>
+              <button class="primary-button" id="hero-browse" type="button">Choose File</button>
+              <small>Supports PDF files up to 50 MB</small>
+              <p class="hero-error" id="hero-error" role="alert" hidden></p>
+            </div>
           </div>
         </section>
 
         <section class="tool-section" id="tools" aria-labelledby="tool-heading">
           <div class="section-head">
-            <div><h2 id="tool-heading">Popular PDF tools</h2><p>Get things done in just a few clicks.</p></div>
+            <h2 id="tool-heading">Popular PDF Tools</h2>
+            <a href="#tools" class="view-all">View All Tools <span aria-hidden="true">→</span></a>
           </div>
 
           <div class="tool-grid" id="tool-grid">
-            <button class="tool-card" type="button" data-tool="merge" data-category="organize" data-search="merge combine join organize">
-              <span class="tool-icon icon-coral" aria-hidden="true">▢</span><span class="tool-copy"><strong>Merge PDF</strong><small>Combine files into one document.</small></span><span class="tool-arrow" aria-hidden="true"></span>
+            <button class="tool-card" type="button" data-tool="edit-pdf" data-category="organize" data-search="edit pdf modify notes">
+              <span class="tool-icon" aria-hidden="true">✎</span>
+              <span class="tool-copy"><strong>Edit PDF</strong><small>Add text, images and links and more to your PDF file.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
             </button>
-            <button class="tool-card" type="button" data-tool="compress" data-category="optimize" data-search="compress reduce optimize size">
-              <span class="tool-icon icon-violet" aria-hidden="true">⤢</span><span class="tool-copy"><strong>Compress PDF</strong><small>Reduce file size without losing quality.</small></span><span class="tool-arrow" aria-hidden="true"></span>
+            <button class="tool-card" type="button" data-tool="pdf-converter" data-category="convert" data-search="pdf converter convert format">
+              <span class="tool-icon" aria-hidden="true">⇄</span>
+              <span class="tool-copy"><strong>PDF Converter</strong><small>Apply a conversion style pass to a PDF document.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
             </button>
-            <button class="tool-card" type="button" data-tool="split" data-category="organize" data-search="split divide extract pages organize">
-              <span class="tool-icon icon-blue" aria-hidden="true">◫</span><span class="tool-copy"><strong>Split PDF</strong><small>Extract pages or split into files.</small></span><span class="tool-arrow" aria-hidden="true"></span>
+            <button class="tool-card" type="button" data-tool="merge" data-category="organize" data-search="merge pdf combine join organize">
+              <span class="tool-icon" aria-hidden="true">▢</span>
+              <span class="tool-copy"><strong>Merge PDF</strong><small>Combine multiple PDF files into one.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
             </button>
-            <button class="tool-card" type="button" data-tool="rotate" data-category="organize" data-search="rotate turn orientation organize">
-              <span class="tool-icon icon-green" aria-hidden="true">↻</span><span class="tool-copy"><strong>Rotate PDF</strong><small>Turn pages to the right direction.</small></span><span class="tool-arrow" aria-hidden="true"></span>
+            <button class="tool-card" type="button" data-tool="split" data-category="organize" data-search="split pdf pages extract range">
+              <span class="tool-icon" aria-hidden="true">◫</span>
+              <span class="tool-copy"><strong>Split PDF</strong><small>Extract pages or split into multiple files.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
             </button>
-            <button class="tool-card" type="button" data-tool="images-to-pdf" data-category="convert" data-search="image jpg jpeg png convert pdf">
-              <span class="tool-icon icon-pink" aria-hidden="true">▧</span><span class="tool-copy"><strong>JPG to PDF</strong><small>Convert images into a PDF in seconds.</small></span><span class="tool-arrow" aria-hidden="true"></span>
+            <button class="tool-card" type="button" data-tool="compress" data-category="optimize" data-search="compress pdf reduce size quality">
+              <span class="tool-icon" aria-hidden="true">⤢</span>
+              <span class="tool-copy"><strong>Compress PDF</strong><small>Reduce file size without losing quality.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="rotate" data-category="organize" data-search="rotate pdf orientation page">
+              <span class="tool-icon" aria-hidden="true">↻</span>
+              <span class="tool-copy"><strong>Rotate PDF</strong><small>Rotate pages in your PDF file.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="protect" data-category="organize" data-search="protect pdf password secure">
+              <span class="tool-icon" aria-hidden="true">🔒</span>
+              <span class="tool-copy"><strong>Protect PDF</strong><small>Add password to keep your PDF secure.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="unlock" data-category="organize" data-search="unlock pdf password remove security">
+              <span class="tool-icon" aria-hidden="true">🔓</span>
+              <span class="tool-copy"><strong>Unlock PDF</strong><small>Remove password protection from your PDF.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="images-to-pdf" data-category="convert" data-search="jpg png image to pdf converter">
+              <span class="tool-icon" aria-hidden="true">▧</span>
+              <span class="tool-copy"><strong>JPG to PDF</strong><small>Convert images into a single PDF file.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="create-pdf" data-category="convert" data-search="create pdf from images files">
+              <span class="tool-icon" aria-hidden="true">📄</span>
+              <span class="tool-copy"><strong>Create PDF</strong><small>Build a PDF from images or existing PDFs.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="sign-pdf" data-category="organize" data-search="sign pdf signature approve">
+              <span class="tool-icon" aria-hidden="true">✒</span>
+              <span class="tool-copy"><strong>Sign PDF</strong><small>Add a signature mark to your document.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="remove-pages" data-category="organize" data-search="remove delete pages pdf">
+              <span class="tool-icon" aria-hidden="true">⊖</span>
+              <span class="tool-copy"><strong>Remove PDF pages</strong><small>Delete pages you no longer need.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="extract-pages" data-category="organize" data-search="extract pages pdf save pages">
+              <span class="tool-icon" aria-hidden="true">⎇</span>
+              <span class="tool-copy"><strong>Extract PDF pages</strong><small>Save selected pages as a new PDF.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="rearrange-pages" data-category="organize" data-search="rearrange pages order pdf">
+              <span class="tool-icon" aria-hidden="true">↕</span>
+              <span class="tool-copy"><strong>Rearrange PDF pages</strong><small>Choose a new order for your pages.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="pdf-to-images" data-category="convert" data-search="pdf to images export pages">
+              <span class="tool-icon" aria-hidden="true">▣</span>
+              <span class="tool-copy"><strong>PDF to Images</strong><small>Turn PDF pages into image files.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="extract-pdf-images" data-category="convert" data-search="extract pdf images embedded">
+              <span class="tool-icon" aria-hidden="true">⟡</span>
+              <span class="tool-copy"><strong>Extract PDF images</strong><small>Export pictures embedded in a PDF.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="pdf-ocr" data-category="convert" data-search="ocr recognize text scanned pdf">
+              <span class="tool-icon" aria-hidden="true">OCR</span>
+              <span class="tool-copy"><strong>PDF OCR</strong><small>Recognize text from scanned PDFs.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="add-watermark" data-category="organize" data-search="watermark stamp pdf logo">
+              <span class="tool-icon" aria-hidden="true">◌</span>
+              <span class="tool-copy"><strong>Add watermark</strong><small>Stamp a watermark across your PDF pages.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="add-page-numbers" data-category="organize" data-search="page numbers pdf insert number">
+              <span class="tool-icon" aria-hidden="true">123</span>
+              <span class="tool-copy"><strong>Add page numbers</strong><small>Number pages for easier reading.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="pdf-overlay" data-category="organize" data-search="pdf overlay combine layers">
+              <span class="tool-icon" aria-hidden="true">◫</span>
+              <span class="tool-copy"><strong>PDF Overlay</strong><small>Layer one PDF over another.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="compare-pdfs" data-category="convert" data-search="compare pdf documents differences">
+              <span class="tool-icon" aria-hidden="true">≣</span>
+              <span class="tool-copy"><strong>Compare PDFs</strong><small>Review differences between two files.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="web-optimizer" data-category="optimize" data-search="web optimize reduce size share pdf">
+              <span class="tool-icon" aria-hidden="true">⟳</span>
+              <span class="tool-copy"><strong>Web optimize PDF</strong><small>Optimize PDFs for sharing online.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="tool-card" type="button" data-tool="redact-pdf" data-category="organize" data-search="redact hide block pdf text">
+              <span class="tool-icon" aria-hidden="true">▦</span>
+              <span class="tool-copy"><strong>Redact PDF</strong><small>Black out content before sharing.</small></span>
+              <span class="tool-arrow" aria-hidden="true"></span>
             </button>
           </div>
           <p class="no-results" id="no-results" hidden>No tools found. Try a different search.</p>
         </section>
 
-        <section class="categories-section" aria-labelledby="category-heading">
-          <h2 id="category-heading">PDF tools for every task</h2>
-          <div class="filter-row" id="category-tabs" role="group" aria-label="Filter PDF tools">
-            <button class="filter-chip is-selected" type="button" data-filter="all">All tools</button>
-            <button class="filter-chip" type="button" data-filter="organize">Organize</button>
-            <button class="filter-chip" type="button" data-filter="convert">Convert</button>
-            <button class="filter-chip" type="button" data-filter="optimize">Compress</button>
+        <div class="feature-strip" aria-label="Key benefits">
+          <div class="feature-item">
+            <span class="feature-icon lightning">⚡</span>
+            <div>
+              <strong>Fast &amp; Easy</strong>
+              <p>Get your files processed in seconds with a simple interface.</p>
+            </div>
           </div>
-        </section>
-
-        <section class="how-section" id="how-it-works" aria-labelledby="how-heading">
-          <div class="section-head"><div><h2 id="how-heading">How it works</h2><p>Three simple steps. No account required.</p></div></div>
-          <div class="steps-grid">
-            <div class="step-item"><span>01</span><strong>Choose a tool</strong><p>Pick the PDF task you want to complete.</p></div>
-            <div class="step-item"><span>02</span><strong>Add your files</strong><p>Upload PDFs or images from your device.</p></div>
-            <div class="step-item"><span>03</span><strong>Download the result</strong><p>Your processed file is ready right away.</p></div>
+          <div class="feature-item">
+            <span class="feature-icon shield">✓</span>
+            <div>
+              <strong>Secure</strong>
+              <p>Your files are safe and private. We don't store your data.</p>
+            </div>
           </div>
-        </section>
+          <div class="feature-item">
+            <span class="feature-icon globe">◩</span>
+            <div>
+              <strong>Works Everywhere</strong>
+              <p>Use on any device — desktop, tablet or mobile.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon heart">♥</span>
+            <div>
+              <strong>100% Free</strong>
+              <p>All tools are free to use. No hidden charges.</p>
+            </div>
+          </div>
+        </div>
 
         <section class="recent-section" id="recent" aria-labelledby="recent-heading">
-          <div class="section-head recent-head"><div><h2 id="recent-heading">Recent files</h2><p>Your latest work, ready when you are.</p></div><span class="history-note">Only visible in this browser</span></div>
+          <div class="section-head recent-head">
+            <div>
+              <h2 id="recent-heading">Recent files</h2>
+              <p>Your latest work, ready when you are.</p>
+            </div>
+            <span class="history-note">Only visible in this browser</span>
+          </div>
           <div class="history-table-wrap">
             <table class="history-table">
-              <thead><tr><th>FILE</th><th>TOOL</th><th>SIZE</th><th>WHEN</th><th><span class="sr-only">Actions</span></th></tr></thead>
-              <tbody id="history-body"><tr><td class="empty-history" colspan="5"><span class="empty-mark">◷</span><strong>Nothing here yet</strong><span>Your finished files will show up here.</span></td></tr></tbody>
+              <thead>
+                <tr><th>FILE</th><th>TOOL</th><th>SIZE</th><th>WHEN</th><th><span class="sr-only">Actions</span></th></tr>
+              </thead>
+              <tbody id="history-body">
+                <tr><td class="empty-history" colspan="5"><span class="empty-mark">◷</span><strong>Nothing here yet</strong><span>Your finished files will show up here.</span></td></tr>
+              </tbody>
             </table>
           </div>
         </section>
@@ -149,17 +290,81 @@
   <dialog class="tool-dialog" id="tool-dialog" aria-labelledby="dialog-title">
     <form class="dialog-form" id="job-form">
       <div class="dialog-top"><span class="dialog-kicker" id="dialog-kicker">PDF TOOL</span><button class="close-dialog" type="button" id="close-dialog" aria-label="Close">×</button></div>
-      <h2 id="dialog-title">Merge PDF</h2>
-      <p class="dialog-description" id="dialog-description">Put your PDFs in the order you want them combined.</p>
-      <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Choose or drop files">
-        <input id="file-input" name="files" type="file" hidden>
-        <span class="drop-icon" aria-hidden="true">↑</span>
-        <strong>Drop files here</strong><span>or <span class="browse-link">browse your device</span></span>
-        <small id="accepted-types">PDF files · up to 100 MB</small>
+      <div class="tool-intro" id="tool-intro">
+        <h2 id="dialog-title">Merge PDF</h2>
+        <p class="dialog-description" id="dialog-description">Put your PDFs in the order you want them combined.</p>
       </div>
-      <div class="file-list" id="file-list" aria-live="polite"></div>
-      <div class="option-row" id="split-options" hidden><label for="page-ranges">Page ranges <span>Optional</span></label><input id="page-ranges" type="text" name="ranges" placeholder="e.g. 1-3, 5, 8-9"><small>Leave blank to save each page as a separate PDF.</small></div>
-      <div class="option-row" id="rotate-options" hidden><label for="rotation">Rotation</label><select id="rotation" name="degrees"><option value="90">90° clockwise</option><option value="180">180°</option><option value="270">90° counter-clockwise</option></select></div>
+      <div class="upload-panel" id="upload-panel">
+        <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Choose or drop files">
+          <input id="file-input" name="files" type="file" hidden>
+          <span class="drop-icon" aria-hidden="true">↑</span>
+          <strong>Drop files here</strong><span>or <span class="browse-link">browse your device</span></span>
+          <small id="accepted-types">PDF files · up to 100 MB</small>
+        </div>
+        <div class="file-list" id="file-list" aria-live="polite"></div>
+        <div class="option-row" id="split-options" hidden><label for="page-ranges">Page ranges <span>Optional</span></label><input id="page-ranges" type="text" name="ranges" placeholder="e.g. 1-3, 5, 8-9"><small>Leave blank to save each page as a separate PDF.</small></div>
+        <div class="option-row" id="rotate-options" hidden><label for="rotation">Rotation</label><select id="rotation" name="degrees"><option value="90">90° clockwise</option><option value="180">180°</option><option value="270">90° counter-clockwise</option></select></div>
+        <div class="option-row compression-options" id="compress-options" hidden>
+          <label class="compression-label" for="compression-strength">Target size reduction <output id="compression-strength-value" for="compression-strength">85%</output></label>
+          <input id="compression-strength" type="range" min="10" max="90" step="5" value="85">
+          <div class="compression-range-labels"><span>Light</span><span>Strong</span></div>
+          <small>Higher reductions can lower image quality. The result reports the actual savings.</small>
+        </div>
+        <div class="option-row" id="protect-options" hidden>
+          <label for="protect-password">Password</label>
+          <input id="protect-password" type="password" autocomplete="new-password" placeholder="Enter a password">
+          <small>You’ll need this password to open the protected PDF.</small>
+        </div>
+        <div class="option-row" id="unlock-options" hidden>
+          <label for="unlock-password">PDF password</label>
+          <input id="unlock-password" type="password" autocomplete="current-password" placeholder="Enter the PDF password">
+          <small>Enter the password currently protecting this PDF.</small>
+        </div>
+      </div>
+      <section class="pdf-editor" id="pdf-editor" aria-label="PDF editor" hidden>
+        <div class="editor-toolbar">
+          <div class="editor-tools" role="toolbar" aria-label="PDF editing tools">
+            <button class="editor-tool is-active" type="button" data-editor-tool="text" title="Add text">Text</button>
+            <button class="editor-tool" type="button" data-editor-tool="freehand" title="Draw freehand">Draw</button>
+            <button class="editor-tool" type="button" data-editor-tool="rectangle" title="Draw a rectangle">Rectangle</button>
+            <button class="editor-tool" type="button" data-editor-tool="circle" title="Draw a circle">Circle</button>
+            <button class="editor-tool" type="button" data-editor-tool="arrow" title="Draw an arrow">Arrow</button>
+            <button class="editor-tool" type="button" data-editor-tool="signature" title="Draw a signature" hidden>Signature</button>
+            <button class="editor-tool" type="button" id="editor-image-button" data-editor-tool="image" title="Insert an image">Image</button>
+            <input id="editor-image-input" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg" hidden>
+          </div>
+          <div class="editor-properties">
+            <input id="editor-text" type="text" maxlength="1000" placeholder="Type text, then click the page" aria-label="Text to add">
+            <label class="editor-color-label" title="Annotation color">Color<input id="editor-color" type="color" value="#18345b" aria-label="Annotation color"></label>
+            <label class="editor-size-label" id="editor-size-control">Size<input id="editor-font-size" type="number" min="8" max="72" value="18" aria-label="Text size"></label>
+            <button class="editor-undo" id="editor-undo" type="button" title="Undo last edit">Undo</button>
+          </div>
+        </div>
+        <p class="editor-hint" id="editor-hint" aria-live="polite">Type text above, then click where it should appear.</p>
+        <div class="page-removal-controls" id="page-removal-controls" hidden>
+          <button class="editor-tool" id="toggle-page-removal" type="button">Remove this page</button>
+          <span id="removed-page-count">No pages marked for removal</span>
+        </div>
+        <div class="editor-workspace">
+          <button class="editor-page-step" id="editor-prev" type="button" aria-label="Previous page">‹</button>
+          <div class="editor-page-area">
+            <div class="editor-stage" id="editor-stage">
+              <img id="editor-preview" alt="PDF page preview">
+              <canvas id="editor-canvas" aria-label="PDF annotation canvas"></canvas>
+            </div>
+            <p class="editor-loading" id="editor-loading">Preparing page preview…</p>
+          </div>
+          <button class="editor-page-step" id="editor-next" type="button" aria-label="Next page">›</button>
+        </div>
+        <div class="editor-pagebar">
+          <span id="editor-page-label">Page 1 of 1</span>
+          <span class="editor-page-controls">
+            <button type="button" id="editor-zoom-out" aria-label="Zoom out">−</button>
+            <span id="editor-zoom-label">100%</span>
+            <button type="button" id="editor-zoom-in" aria-label="Zoom in">+</button>
+          </span>
+        </div>
+      </section>
       <div class="job-error" id="job-error" role="alert" hidden></div>
       <div class="job-success" id="job-success" hidden></div>
       <div class="dialog-actions"><button class="cancel-button" type="button" id="cancel-dialog">Cancel</button><button class="process-button" id="process-button" type="submit"><span id="process-label">Merge PDF</span><span aria-hidden="true">↗</span></button></div>

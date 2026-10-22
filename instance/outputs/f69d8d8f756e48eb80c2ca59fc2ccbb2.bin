@@ -1,0 +1,117 @@
+2  
+• 
+Android Auto & CarPlay: 
+o 
+Car App Library, Automotive Templates (Media, Messaging, Navigation), Android SDK, 
+CarPlay framework, Wireless & Wired Projection 
+• 
+Android Audio & Tuner Systems: 
+o 
+Customized Audio and Tuner HALs using C/C++/Java. 
+o 
+Experience with design and development of tuner technologies. AM, FM, HD Radio, 
+DAB, SXM 360L. 
+o 
+Familiarity with QC AudioReach SDK, and QACT. 
+o 
+Experience with Automotive automation development using Python/Shell Script 
+• 
+Web Development 
+o 
+Working knowledge of UI front end and server backend technologies. I.e. ReactJS, 
+NodeJS, MongoDB, Axios, Redux, JavaScript, jQuery, JWT Token, REST APIs. Docker, 
+AWS. 
+• 
+Architecture & Tools: 
+o 
+Strong in Design Patterns, MVVM, MVP, MVC, EA, Data Structures 
+• 
+Additional Skills: 
+o 
+Working knowledge of ONVIF camera protocols, OOP, algorithms. 
+o 
+Experience in CI/CD pipelines 
+o 
+Skilled in JNI, Android APIs, memory analysis, multi-threading, Gradle, JaCoCo, 
+CTS/GTS. 
+ 
+Education 
+APR 2008 
+Master of Computer Applications | JNTU University, Hyderabad, India 
+APR 2005 
+BACHELOR OF SCIENCE | SV UNIVERSITY, CHITTOOR, INDIA 
+ 
+Certificates 
+• 
+Certified SAFe 5 Architect from Scaled Agile Inc 
+• 
+Automotive Software Development Certification for Java Automotive Software Development 
+Certification from Harman International 
+Experience & Projects 
+Lucid Motors | Southfield, Michigan, USA | OCT 2025 – PRESENT 
+Title: Technical Specialist, Projection Technologies 
+• 
+Develop and integrate Android Auto and Apple CarPlay on Android Automotive OS (AAOS), 
+supporting wired/wireless projection and improving connection stability. 
+• 
+Supporting EDGE ML development and Integration for Android based systems using TinyML and 
+XGBoost machine learning libraries. 
+2
+4  
+1. Led development of automotive infotainment features on Android/AAOS, including 
+Audio/Tuner components and platform customization based on OEM requirements. 
+2. Developed and customized HAL components in C/C++ and framework/app layers in Java/Kotlin; 
+debugged complex issues across system services and apps. 
+3. Owned end-to-end delivery in Agile (estimation, sprint planning, demos) and coordinated with 
+QA and integration teams for releases. 
+ 
+Relevant Projects 
+1. Hybrid Radio (Jan 2021 – Feb 2023) | Client: Audi AG 
+Built Android Hybrid Radio combining broadcast (AM/FM/DAB/SXM/HD) with IP services for 
+enriched, personalized in-vehicle content. 
+• 
+Implemented audio correlation using ring buffers and supported integration of hybrid 
+solutions (e.g., Radio Player, Gracenote). 
+• 
+Developed and maintained framework APIs and performed architecture reviews. 
+• 
+Conducted code reviews, mentored developers, and participated in Agile ceremonies. 
+ 
+2. SXM 360L (Feb 2019 – Dec 2021) | Client: Fiat Chrysler Automobiles 
+Delivered SiriusXM 360L in-vehicle experience combining satellite and IP modes with 
+personalized recommendations and on-demand content. 
+• 
+Gathered requirements, performed architecture reviews, and implemented end-to-end 
+functionality across IP + SAT modes. 
+• 
+Developed and maintained framework APIs; supported integration, debugging, and release 
+readiness. 
+• 
+Mentored developers and participated in Agile ceremonies. 
+ 
+3. WiFi Camera (ONVIF) (Oct 2018 – Feb 2019) | Client: Fiat Chrysler Automobiles 
+Developed a wireless camera application using ONVIF protocols for control and video streaming 
+over IP networks. 
+• 
+Developed ONVIF framework APIs and implemented PTZ controls (move/zoom). 
+• 
+Implemented H.264 video streaming using TextureView and handled device 
+configuration/notifications. 
+• 
+Mentored developers and participated in Agile ceremonies. 
+ 
+4. GM MY17/18/19 Infotainment (Nov 2016 – Oct 2018) | Client: General Motors 
+Supported a multi-zone Android-based infotainment platform (Android L/M) enabling 
+simultaneous audio streams across zones and integration with external amplifiers over A/V 
+Ethernet. 
+• 
+Supported multi-zone audio features and ~30 custom streams beyond Android pre-defined 
+streams. 
+• 
+Implemented hands-free calling over Bluetooth and supported AM/FM/SDARS/DAB 
+functionality. 
+• 
+Upgraded platform from KitKat to Marshmallow and performed defect fixes and integration 
+support. 
+ 
+4
